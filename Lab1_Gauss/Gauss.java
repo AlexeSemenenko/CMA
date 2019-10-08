@@ -2,71 +2,109 @@ import java.util.Formatter;
 
 public class Gauss {
 
-    public static void print(double[][] matrix, double[][] vector) {
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[0].length; j++) {
+    public static void print(double[][] matrix, int dim) {
+        for (int i = 0; i < dim; i++) {
+            for (int j = 0; j < dim + 1; j++) {
                 Formatter frm = new Formatter();
                 System.out.print("  " + frm.format("%3.2e", matrix[i][j]) + "  ");
             }
-            Formatter frm = new Formatter();
-            System.out.println("    |    " + frm.format("%3.2e", vector[i][0]));
+            System.out.println();
         }
         System.out.println();
     }
 
-    public static double completeSolution(double[][] matrixA, double[][] vectorF, double[][] E) {
+    public static double determinant(double[][] matrix, int dim){
         double det = 1;
 
-        for (int i = 0; i < matrixA[0].length; i++) {
-            det *= Gauss.divisionByLeadEl(matrixA, vectorF, i, E);
-            Gauss.differenceLinesF(matrixA, vectorF, i, E);
+        for(int i = 0; i < dim; i++){
+            for(int j = i + 1; j < dim; j++){
+                double e = matrix[j][i] / matrix[i][i];
+                for(int k = i; k < dim; k++){
+                    matrix[j][k] -= e * matrix[i][k];
+                }
+            }
         }
 
-        for (int i = matrixA[0].length - 1; i >= 0; i--) {
-            Gauss.differenceLinesS(matrixA, vectorF, i, E);
+        for(int i = 0; i < dim; i++){
+            det *= matrix[i][i];
         }
+
         return det;
     }
 
-    private static double divisionByLeadEl(double[][] matrixA, double[][] vectorF, int nLine, double[][] E) {
-        double leadEl = matrixA[nLine][nLine];
+    public static void getUpperTriangular(double[][] matrix, int dim){
+        double temp;
 
-        vectorF[nLine][0] /= leadEl;
+        for(int i = 0; i < dim; i++){
+            temp = matrix[i][i];
 
-        for (int j = nLine + 1; j < matrixA[0].length; j++) {
-            matrixA[nLine][j] /= leadEl;
-        }
-
-        for (int j = 0; j < E[0].length; j++) {
-            E[nLine][j] /= leadEl;
-        }
-
-        return leadEl;
-    }
-
-    private static void differenceLinesF(double[][] matrixA, double[][] vectorF, int nLine, double[][] E) {
-        for (int i = nLine + 1; i < matrixA.length; i++) {
-            vectorF[i][0] -= vectorF[nLine][0] * matrixA[i][nLine];
-
-            for (int j = nLine + 1; j < matrixA[0].length; j++) {
-                matrixA[i][j] -= matrixA[nLine][j] * matrixA[i][nLine];
+            for(int j = dim; j >= i; j--){
+                matrix[i][j] /= temp;
             }
+            for(int j = i + 1; j < dim; j++){
+                temp = matrix[j][i];
 
-            for (int j = 0; j < matrixA.length; j++) {
-                E[i][j] -= E[nLine][j] * matrixA[i][nLine];
+                for(int k = dim; k >= i; k--){
+                    matrix[j][k] -= temp * matrix[i][k];
+                }
             }
         }
     }
 
-    private static void differenceLinesS(double[][] matrixA, double[][] vectorF, int nLine, double[][] E) {
-        for (int i = 0; i < nLine; i++) {
-            vectorF[i][0] -= vectorF[nLine][0] * matrixA[i][nLine];
+    public static double[][] inverseMatrix(double[][] matrix, int dim){
+        double temp;
 
-            for (int j = 0; j < matrixA[0].length; j++) {
-                E[i][j] -= E[nLine][j] * matrixA[i][nLine];
+        double[][] E = {{1, 0, 0, 0},
+                {0, 1, 0, 0},
+                {0, 0, 1, 0},
+                {0, 0, 0, 1}};
+
+        for(int k = 0; k < dim; k++){
+            temp = matrix[k][k];
+
+            for(int j = 0; j < dim; j++){
+                matrix[k][j] /= temp;
+                E[k][j] /= temp;
             }
 
-            matrixA[i][nLine] = 0;
+            for(int i = k + 1; i < dim; i++){
+                temp = matrix[i][k];
+
+                for(int j = 0; j < dim; j++){
+                    matrix[i][j] -= temp * matrix[k][j];
+                    E[i][j] -= temp * E[k][j];
+                }
+            }
         }
+
+        for(int k = dim - 1; k > 0; k--){
+            for (int i = k - 1; i >= 0; i--){
+                temp = matrix[i][k];
+
+                for(int j = 0; j < dim; j++){
+                    matrix[i][j] -= temp * matrix[k][j];
+                    E[i][j] -= temp * E[k][j];
+                }
+            }
+        }
+        return E;
+    }
+
+    public static double[][] getResult(double[][] matrix, int dim){
+        double[][] result = new double[dim][1];
+
+        getUpperTriangular(matrix, dim);
+
+        result[dim - 1][0] = matrix[dim - 1][dim];
+
+        for(int i = dim - 2; i >= 0; i--){
+            result[i][0] = matrix[i][dim];
+
+            for(int j = i + 1; j < dim; j++){
+                result[i][0] -= matrix[i][j] * result[j][0];
+            }
+        }
+        return result;
     }
 }
+//double[][] result,
