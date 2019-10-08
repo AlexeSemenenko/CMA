@@ -107,4 +107,3 @@ public class Gauss {
         return result;
     }
 }
-//double[][] result,
