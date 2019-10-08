@@ -2,6 +2,7 @@ import java.util.Formatter;
 
 public class Matrix{
 
+    //вывод квадратной матрицы
     public static void print(double[][] matrix) {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {
@@ -13,6 +14,7 @@ public class Matrix{
         System.out.println();
     }
 
+    //умножение матриц
     public static double[][] multiply(double[][] first, double[][] second) {
 
         double[][] result = new double[first.length][second[0].length];
@@ -28,6 +30,7 @@ public class Matrix{
         return result;
     }
 
+    //разность матриц
     public static double[][] difference(double[][] first, double[][] second) {
         double[][] result = new double[first.length][second[0].length];
 

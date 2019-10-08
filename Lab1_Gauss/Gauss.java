@@ -2,6 +2,7 @@ import java.util.Formatter;
 
 public class Gauss {
 
+    //вывод расширенной матрицы
     public static void print(double[][] matrix, int dim) {
         for (int i = 0; i < dim; i++) {
             for (int j = 0; j < dim + 1; j++) {
@@ -13,6 +14,7 @@ public class Gauss {
         System.out.println();
     }
 
+    //вычисление определителя
     public static double determinant(double[][] matrix, int dim){
         double det = 1;
 
@@ -32,6 +34,7 @@ public class Gauss {
         return det;
     }
 
+    //нахождение верхне-треугольной
     public static void getUpperTriangular(double[][] matrix, int dim){
         double temp;
 
@@ -51,6 +54,7 @@ public class Gauss {
         }
     }
 
+    //нахождение обратной
     public static double[][] inverseMatrix(double[][] matrix, int dim){
         double temp;
 
@@ -90,6 +94,7 @@ public class Gauss {
         return E;
     }
 
+    //получение вектора Х
     public static double[][] getResult(double[][] matrix, int dim){
         double[][] result = new double[dim][1];
 

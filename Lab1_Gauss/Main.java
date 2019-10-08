@@ -21,18 +21,22 @@ public class Main {
                 {3.77, 7.21 + ALPHA, 8.04, 2.28, 15.45 - ALPHA},
                 {2.21, 3.65 - ALPHA, 1.69, 6.99, -8.35}};
 
+        //размерность матрицы
         int dim = matrixA.length;
 
+        //копия матрицы для определителя
         double[][] matrixForDet = matrixA.clone();
         for (int i = 0; i < matrixA.length; i++) {
             matrixForDet[i] = matrixA[i].clone();
         }
 
+        //копия матрицы для верхне-треугольной
         double[][] matrixForUT = augmented.clone();
         for (int i = 0; i < matrixA.length; i++) {
             matrixForUT[i] = augmented[i].clone();
         }
 
+        //копия матрицы для обратной
         double[][] matrixForInverse = matrixA.clone();
         for (int i = 0; i < matrixA.length; i++) {
             matrixForInverse[i] = matrixA[i].clone();
