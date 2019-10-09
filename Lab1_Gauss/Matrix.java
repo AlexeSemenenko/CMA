@@ -8,6 +8,8 @@ public class Matrix{
             for (int j = 0; j < matrix[0].length; j++) {
                 Formatter frm = new Formatter();
                 System.out.print("  " + frm.format("%3.2e", matrix[i][j]) + "  ");
+//               System.out.printf("%8.3f", matrix[i][j]);
+//               System.out.print(" ");
             }
             System.out.println();
         }

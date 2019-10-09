@@ -1,13 +1,11 @@
-import java.util.Formatter;
-
 public class Gauss {
 
     //вывод расширенной матрицы
     public static void print(double[][] matrix, int dim) {
         for (int i = 0; i < dim; i++) {
             for (int j = 0; j < dim + 1; j++) {
-                Formatter frm = new Formatter();
-                System.out.print("  " + frm.format("%3.2e", matrix[i][j]) + "  ");
+                System.out.printf("%8.3f", matrix[i][j]);
+                System.out.print(" ");
             }
             System.out.println();
         }

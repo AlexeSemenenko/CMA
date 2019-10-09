@@ -1,5 +1,3 @@
-import java.util.Formatter;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -51,9 +49,9 @@ public class Main {
         System.out.println("Augmented matrix:");
         Gauss.print(augmented, dim);
 
-        Formatter frm = new Formatter();
-        System.out.println("Determinant = " +
-                frm.format("%3.4e", Gauss.determinant(matrixForDet, dim)));
+        double det = Gauss.determinant(matrixForDet, dim);
+        System.out.printf("Determinant = %8.4f", det);
+        System.out.println();
 
         Gauss.getUpperTriangular(matrixForUT, dim);
         System.out.println("Upper triangular matrix:");
