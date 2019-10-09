@@ -1,5 +1,3 @@
-import java.util.Formatter;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -36,9 +34,9 @@ public class Main {
         System.out.println("Matrix S:");
         Matrix.print(matrixS);
 
-        Formatter frm = new Formatter();
         double det = SquareRoot.determinant(matrixS);
-        System.out.println("Determinant = " + frm.format("%3.4e", det) + "\n");
+        System.out.printf("Determinant = %8.4f", det);
+        System.out.println();
 
         double[][] vectorY = SquareRoot.getVectorY(matrixS, newF);
         System.out.println("Vector Y:");
