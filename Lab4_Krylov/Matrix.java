@@ -30,32 +30,6 @@ public class Matrix{
         return result;
     }
 
-    //разность матриц
-    public static double[][] difference(double[][] first, double[][] second) {
-        double[][] result = new double[first.length][second[0].length];
-
-        for (int i = 0; i < first.length; i++) {
-            for (int j = 0; j < first[0].length; j++) {
-                result[i][j] = first[i][j] - second[i][j];
-            }
-        }
-
-        return result;
-    }
-
-    //сумма матриц
-    public static double[][] addition(double[][] first, double[][] second) {
-        double[][] result = new double[first.length][second[0].length];
-
-        for (int i = 0; i < first.length; i++) {
-            for (int j = 0; j < first[0].length; j++) {
-                result[i][j] = first[i][j] + second[i][j];
-            }
-        }
-
-        return result;
-    }
-
     //копирование матриц
     public static void copy(double[][] first, double[][] second){
         for(int i = 0; i < first.length; i++){

@@ -25,12 +25,15 @@ public class Main {
         Matrix.print(vectorQ);
 
         double[] lambda = {0.79, 5.30, 5.95, 19.73};
+        System.out.println("Eigenvalue: ");
+        for(int i = 0; i < dim; i++){
+            System.out.print(lambda[i] + " ");
+        }
+        System.out.println("\n");
 
         for(int i = 0; i < dim; i++){
             System.out.printf("The value of %3.2f corresponds to a vector:\n", lambda[i]);
             Matrix.print(Krylov.getEigenvector(lambda[i], matrixC, dim, vectorQ));
-            System.out.println();
         }
-
     }
 }

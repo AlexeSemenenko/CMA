@@ -40,6 +40,7 @@ public class Krylov {
         }
     }
 
+    //получение собственного вектора
     public  static double[][] getEigenvector(double lambda, double[][] matrixC, int dim, double[][] vectorQ){
         double[] betta = new double[dim];
         betta[0] = 1;
