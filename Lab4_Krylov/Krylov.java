@@ -29,7 +29,7 @@ public class Krylov {
         return matrixC;
     }
 
-    //печать коэффицентов q(i)
+    //печать коэффицентов c(i)
     public static void printCoeff(double[][] matrixC, int dim){
         for(int i = 0; i < dim; i++){
             for(int j = dim - 1; j >= 0; j--){
